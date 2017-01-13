@@ -5,8 +5,8 @@ services:
     build:
       context: ./magento-ce/
     environment:
-      - APP_HOSTNAME=demo-magento1-ce.docker
-      - PUBLIC_ADDRESS=https://demo-magento1-ce.docker/
+      - APP_HOSTNAME=dockerm1demo_web-ce.docker
+      - PUBLIC_ADDRESS=https://dockerm1demo_web-ce.docker/
       - APP_USER_LOCAL=true
       - DATABASE_HOST=database
       - DATABASE_NAME=magentodb
@@ -19,6 +19,9 @@ services:
       - database
       - redis
       - memcached
+    expose:
+      - 80
+      - 443
 
   database:
     image: quay.io/continuouspipe/mysql5.6:v1.0
