@@ -41,3 +41,4 @@ tasks:
                    specification:
                        accessibility:
                            from_external: true
+
