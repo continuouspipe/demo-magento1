@@ -2,7 +2,7 @@ tasks:
    images:
        build:
            services:
-               web:
+               web-ce:
                    image: ${IMAGE_NAME}
                    naming_strategy: sha1
    deployment:
@@ -11,7 +11,7 @@ tasks:
            environment:
                name: '"m1demo-" ~ code_reference.branch'
            services:
-               web:
+               web-ce:
                    specification:
                        accessibility:
                            from_external: true
