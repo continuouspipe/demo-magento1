@@ -19,7 +19,6 @@ services:
       - database
       - redis
       - memcached
-    image: quay.io/continuouspipe/demo-magento1-ce:v1.0
 
   database:
     image: quay.io/continuouspipe/mysql5.6:v1.0
