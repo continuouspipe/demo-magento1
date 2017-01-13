@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -xe
+
+source /usr/local/share/bootstrap/common_functions.sh
+source /usr/local/share/php/common_functions.sh
+load_env
+
+# Install sample db
+export DATABASE_ARCHIVE_PATH=/tmp/community/magento-sample-data-1.9.2.4/magento_sample_data_for_1.9.2.4.sql.gz
+source /usr/local/share/magento1/development/install_database.sh
+
+# Set site urls
+source /usr/local/share/magento1/development/replace_core_config_values.sh
+replace_core_config_values
+
+# Create default admin user
+ADMINUSER=$(as_code_owner "../bin/n98-magerun admin:user:list | grep admin | wc -c" /app/public)
+if [ $ADMINUSER -eq 0 ]; then
+    as_code_owner "../bin/n98-magerun admin:user:create admin admin@example.com admin test test Administrators" /app/public
+fi
