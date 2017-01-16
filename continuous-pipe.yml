@@ -16,6 +16,10 @@ tasks:
                    specification:
                        ports:
                          - 3306
+                   deployment_strategy:
+                       readiness_probe:
+                           type: tcp
+                           port: 3306
 
                redis:
                    deployment_strategy:
@@ -30,6 +34,10 @@ tasks:
                    specification:
                        ports:
                          - 11211
+                   deployment_strategy:
+                       readiness_probe:
+                           type: tcp
+                           port: 11211
 
    application:
        deploy:
@@ -41,4 +49,8 @@ tasks:
                    specification:
                        accessibility:
                            from_external: true
+                   deployment_strategy:
+                       readiness_probe:
+                           type: tcp
+                           port: 80
 
