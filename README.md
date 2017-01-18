@@ -30,3 +30,4 @@ INFO reaped unknown pid <x>
 ```
 
 The Magento cron is called correctly though.
+
