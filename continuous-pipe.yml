@@ -1,75 +1,74 @@
 tasks:
-   images:
-       build:
-           services:
-               web-ce:
-                   image: ${IMAGE_NAME}
-                   naming_strategy: sha1
+  images:
+    build:
+      services:
+        web-ce:
+          image: ${IMAGE_NAME}
+          naming_strategy: sha1
 
-   infrastructure:
-       deploy:
-           cluster: ${CLUSTER}
-           environment:
-               name: '"m1demo-" ~ code_reference.branch'
-           services:
-               database:
-                   specification:
-                       ports:
-                         - 3306
-                   deployment_strategy:
-                       readiness_probe:
-                           type: tcp
-                           port: 3306
+  infrastructure:
+    deploy:
+      cluster: ${CLUSTER}
+      environment:
+        name: '"m1demo-" ~ code_reference.branch'
+      services:
+        database:
+          specification:
+            ports:
+              - 3306
+          deployment_strategy:
+            readiness_probe:
+              type: tcp
+              port: 3306
 
-               redis:
-                   deployment_strategy:
-                       readiness_probe:
-                           type: tcp
-                           port: 6379
-                   specification:
-                       ports:
-                         - 6379
+        redis:
+          deployment_strategy:
+            readiness_probe:
+              type: tcp
+              port: 6379
+          specification:
+            ports:
+              - 6379
 
-               memcached:
-                   specification:
-                       ports:
-                         - 11211
-                   deployment_strategy:
-                       readiness_probe:
-                           type: tcp
-                           port: 11211
+        memcached:
+          specification:
+            ports:
+              - 11211
+          deployment_strategy:
+            readiness_probe:
+              type: tcp
+              port: 11211
 
   initialization:
     run:
       cluster: ${CLUSTER}
-        environment:
-          name: '"m1demo-" ~ code_reference.branch'
+      environment:
+        name: '"m1demo-" ~ code_reference.branch'
 
-        image:
-            from_service: web-ce
+      image:
+        from_service: web-ce
 
-        commands:
-            - /usr/local/share/magento1/cp-initialise.sh
+      commands:
+        - /usr/local/share/magento1/cp-initialise.sh
 
-        environment_variables:
-            - name: PUBLIC_ADDRESS
-              value: https://${SERVICE_WEB_CE_PUBLIC_ENDPOINT}/
+      environment_variables:
+        - name: PUBLIC_ADDRESS
+          value: https://${SERVICE_WEB_CE_PUBLIC_ENDPOINT}/
 
     #filter:
     #   expression: 'tasks.infrastructure.services.database.created'
 
   application:
-       deploy:
-           cluster: ${CLUSTER}
-           environment:
-               name: '"m1demo-" ~ code_reference.branch'
-           services:
-               web-ce:
-                   specification:
-                       accessibility:
-                           from_external: true
-                   deployment_strategy:
-                       readiness_probe:
-                           type: tcp
-                           port: 80
-
+    deploy:
+      cluster: ${CLUSTER}
+      environment:
+        name: '"m1demo-" ~ code_reference.branch'
+      services:
+        web-ce:
+          specification:
+            accessibility:
+              from_external: true
+            deployment_strategy:
+              readiness_probe:
+                type: tcp
+                port: 80
