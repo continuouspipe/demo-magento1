@@ -10,7 +10,7 @@ COPY assets /tmp
 
 COPY usr /usr
 
-# Install dependencies
-#ARG GITHUB_TOKEN=
 RUN chown -R build:build /app \
  && bash /usr/local/bin/supervisor_custom_start-20-magento1
+
+CMD ["/usr/local/bin/supervisor_start"]
