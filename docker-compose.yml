@@ -14,7 +14,7 @@ services:
       - DATABASE_PASSWORD=magento
       - DATABASE_ROOT_PASSWORD=magento
       - MAGENTO_CRYPT_KEY=VElJzTQztEttxRfSyVn5w4sAqOjWvWFa
-      - FORCE_DATABASE_DROP=false
+      - FORCE_DATABASE_DROP=true
     links:
       - database
       - redis
