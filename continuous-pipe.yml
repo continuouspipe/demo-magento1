@@ -1,3 +1,7 @@
+variables:
+  - name: PUBLIC_ADDRESS
+    value: https://${SERVICE_WEB_CE_PUBLIC_ENDPOINT}/
+
 tasks:
   images:
     build:
@@ -53,7 +57,7 @@ tasks:
 
       environment_variables:
         - name: PUBLIC_ADDRESS
-          value: https://${SERVICE_WEB_CE_PUBLIC_ENDPOINT}/
+          value: ${PUBLIC_ADDRESS}
 
     #filter:
     #   expression: 'tasks.infrastructure.services.database.created'
