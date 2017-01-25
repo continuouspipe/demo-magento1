@@ -53,7 +53,7 @@ tasks:
         from_service: web-ce
 
       commands:
-        - /usr/local/share/magento1/cp-initialise.sh
+        - /bin/bash /usr/local/share/magento1/cp-initialise.sh
 
       environment_variables:
         - name: PUBLIC_ADDRESS
