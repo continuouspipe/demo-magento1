@@ -1,12 +1,12 @@
 variables:
   - name: PUBLIC_ADDRESS
-    value: https://${SERVICE_WEB_CE_PUBLIC_ENDPOINT}/
+    value: https://${SERVICE_WEBCE_PUBLIC_ENDPOINT}/
 
 tasks:
   images:
     build:
       services:
-        web-ce:
+        webce:
           image: ${IMAGE_NAME}
           naming_strategy: sha1
 
@@ -49,7 +49,7 @@ tasks:
       environment:
         name: '"m1demo-" ~ code_reference.branch'
       services:
-        web-ce:
+        webce:
           specification:
             accessibility:
               from_external: true
@@ -65,7 +65,7 @@ tasks:
         name: '"m1demo-" ~ code_reference.branch'
 
       image:
-        from_service: web-ce
+        from_service: webce
 
       commands:
         - /bin/bash /usr/local/share/magento1/cp-initialise.sh

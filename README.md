@@ -5,12 +5,12 @@ A working Magento 1 instance running with the sample shop.
 ## How to build
 
 ```bash
-docker-compose up web-ce
+docker-compose up webce
 ```
 
 ## How to use
 
-Creates the store on https://dockerm1demo_web-ce.docker/
+Creates the store on https://dockerm1demo_webce.docker/
 
 Admin login credentials:
 

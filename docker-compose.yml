@@ -1,12 +1,12 @@
 version: '2'
 
 services:
-  web-ce:
+  webce:
     build:
       context: ./magento-ce/
     environment:
-      - APP_HOSTNAME=dockerm1demo_web-ce.docker
-      - PUBLIC_ADDRESS=https://dockerm1demo_web-ce.docker/
+      - APP_HOSTNAME=dockerm1demo_webce.docker
+      - PUBLIC_ADDRESS=https://dockerm1demo_webce.docker/
       - APP_USER_LOCAL=true
       - DATABASE_HOST=database
       - DATABASE_NAME=magentodb
