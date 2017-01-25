@@ -8,3 +8,4 @@ load_env
 
 as_code_owner "../bin/n98-magerun config:set web/unsecure/base_url ${PUBLIC_ADDRESS}" /app/public
 as_code_owner "../bin/n98-magerun config:set web/secure/base_url ${PUBLIC_ADDRESS}" /app/public
+
