@@ -60,6 +60,7 @@ tasks:
 
             ports:
               - 80
+              - 443
 
     filter:
       expression: 'tasks.infrastructure.services.database.created'
