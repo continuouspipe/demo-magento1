@@ -43,6 +43,27 @@ tasks:
               type: tcp
               port: 11211
 
+  reserve_ip:
+    deploy:
+      cluster: ${CLUSTER}
+      environment:
+        name: '"m1demo-" ~ code_reference.branch'
+
+      services:
+        webce:
+          specification:
+            source:
+              image: continuouspipe/landing-page
+              tag: latest
+            accessibility:
+              from_external: true
+
+            ports:
+              - 80
+
+    filter:
+      expression: 'tasks.storage.services.database.created'
+
   application:
     deploy:
       cluster: ${CLUSTER}
@@ -57,22 +78,6 @@ tasks:
             readiness_probe:
               type: tcp
               port: 80
-
-  initialization:
-    run:
-      cluster: ${CLUSTER}
-      environment:
-        name: '"m1demo-" ~ code_reference.branch'
-
-      image:
-        from_service: webce
-
-      commands:
-        - /bin/bash /usr/local/share/magento1/cp-initialise.sh
-
       environment_variables:
         - name: PUBLIC_ADDRESS
-          value: ${PUBLIC_ADDRESS}
-
-    #filter:
-    #   expression: 'tasks.infrastructure.services.database.created'
+          value: https://${SERVICE_WEBCE_PUBLIC_ENDPOINT}/
