@@ -15,7 +15,10 @@ source /usr/local/share/magento1/development/replace_core_config_values.sh
 replace_core_config_values
 
 # Create default admin user
-#ADMINUSER=$(as_code_owner "../bin/n98-magerun admin:user:list | grep admin | wc -c" /app/public)
-#if [ $ADMINUSER -eq 0 ]; then
-#    as_code_owner "../bin/n98-magerun admin:user:create admin admin@example.com admin test test Administrators" /app/public
-#fi
+ADMINUSER=$(as_code_owner "../bin/n98-magerun admin:user:list | grep admin | wc -c" /app/public)
+if [ $ADMINUSER -eq 0 ]; then
+    as_code_owner "../bin/n98-magerun admin:user:create admin admin@example.com admin test test Administrators" /app/public
+fi
+
+# Clear caches so core config changes are read
+as_code_owner "../bin/n98-magerun ca:cl" /app/public
