@@ -62,7 +62,7 @@ tasks:
               - 80
 
     filter:
-      expression: 'tasks.storage.services.database.created'
+      expression: 'tasks.infrastructure.services.database.created'
 
   application:
     deploy:
