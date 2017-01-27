@@ -36,3 +36,4 @@ services:
 
   memcached:
     image: quay.io/continuouspipe/memcached1.4:v1.0
+
