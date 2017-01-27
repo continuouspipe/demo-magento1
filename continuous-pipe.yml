@@ -81,3 +81,4 @@ tasks:
             readiness_probe:
               type: tcp
               port: 80
+
