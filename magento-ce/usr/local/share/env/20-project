@@ -1,3 +1,4 @@
 #!/bin/bash
 
 export DATABASE_ARCHIVE_PATH=${DATABASE_ASSET_PATH:-/tmp/community/magento-sample-data-1.9.2.4/magento_sample_data_for_1.9.2.4.sql.gz}
+export MAGENTO_CREATE_ADMIN_USER=${MAGENTO_CREATE_ADMIN_USER:-0}
