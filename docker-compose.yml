@@ -24,7 +24,7 @@ services:
       - 443
 
   database:
-    image: quay.io/continuouspipe/mysql5.6:v1.0
+    image: quay.io/continuouspipe/mysql5.6:stable
     environment:
       MYSQL_ROOT_PASSWORD: magento
       MYSQL_DATABASE: magentodb
@@ -32,9 +32,7 @@ services:
       MYSQL_PASSWORD: magento
 
   redis:
-    image: quay.io/continuouspipe/redis3:v1.0
+    image: quay.io/continuouspipe/redis3:stable
 
   memcached:
-    image: quay.io/continuouspipe/memcached1.4:v1.0
-
-
+    image: quay.io/continuouspipe/memcached1.4:stable

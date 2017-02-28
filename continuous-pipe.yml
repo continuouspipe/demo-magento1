@@ -65,6 +65,23 @@ tasks:
     filter:
       expression: 'tasks.infrastructure.services.database.created'
 
+  setup:
+    run:
+      cluster: ${CLUSTER}
+      image:
+        from_service: webce
+      environment:
+        name: '"m1demo-" ~ code_reference.branch'
+
+      commands:
+        - container setup
+
+      environment_variables: &WEB_ENV_VARS
+        - name: PUBLIC_ADDRESS
+          value: https://${SERVICE_WEBCE_PUBLIC_ENDPOINT}/
+    filter:
+      expression: 'tasks.infrastructure.services.database.created'
+
   application:
     deploy:
       cluster: ${CLUSTER}
@@ -76,10 +93,20 @@ tasks:
             accessibility:
               from_external: true
             environment_variables:
-              - name: PUBLIC_ADDRESS
-                value: https://${SERVICE_WEBCE_PUBLIC_ENDPOINT}/
+              <<: *WEB_ENV_VARS
           deployment_strategy:
             readiness_probe:
               type: tcp
               port: 80
-
+        cron:
+          specification:
+            accessibility:
+              from_cluster: false
+            source:
+              from_service: webce
+            ports: []
+            environment_variables:
+              <<: *WEB_ENV_VARS
+              1000:
+                name: START_MODE
+                value: cron
